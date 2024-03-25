@@ -1,6 +1,6 @@
 # AtlasVision Pro
 
-[Note Pro is added because this is the second variation[
+[Note Pro is added because this is the second variation]
 
 AtlasVision Pro is a model I have been working on the side which, given any input from the contintential United States and some areas in Canada and Mexico, would output 
 a normalized location corresponding to latitude and longitude.
