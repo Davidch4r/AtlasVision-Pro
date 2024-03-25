@@ -1,0 +1,7 @@
+numpy
+googlemaps
+matplotlib
+pillow
+global_land_mask
+tensorflow==2.16.1
+opencv-python
