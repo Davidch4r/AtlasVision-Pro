@@ -10,4 +10,6 @@ Due to issues with Github's LFS, I cannot currently publish the model itself on 
 The training process works in a very similar fashion to the game Geoguessr, where a random location is selected through Google Map's API and through Deep Learning the 
 model learns to guess.
 
-Currently not finished but hope to continue workingo n it in the future. 
+To see the AI in action please check the display.ipynb file as that is where I usually check how the AI is going.
+
+Currently not finished but hope to continue working on it in the future. 
