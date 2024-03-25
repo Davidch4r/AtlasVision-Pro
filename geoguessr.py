@@ -4,7 +4,6 @@ from io import BytesIO
 from PIL import Image
 from city_image import CityImage
 from gui import GUI
-from global_land_mask import globe
 from agent import Agent
 import os
 import time
@@ -77,16 +76,11 @@ class Game:
 
     def generate_random_location(self, verbose=True, limit=100):
         MAX_TRIES = limit
-        not_on_land = 0
         for i in range(MAX_TRIES):  # Limit the number of attempts
             if verbose:
-                print(f"{i}/{MAX_TRIES}{f' | Not on Land x{not_on_land}' if not_on_land else ''}", end="\r")
+                print(f"{i}/{MAX_TRIES}", end="\r")
             lat = np.random.uniform(low=self.extreme_points['S'], high=self.extreme_points['N'])
             lng = np.random.uniform(low=self.extreme_points['W'], high=self.extreme_points['E'])
-
-            if (not globe.is_land(lat, lng)):
-                not_on_land += 1
-                continue
 
             # Check Street View availability
             street_view_url = f"https://maps.googleapis.com/maps/api/streetview/metadata?location={lat},{lng}&key={self.key}"
