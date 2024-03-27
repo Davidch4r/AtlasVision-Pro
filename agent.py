@@ -33,11 +33,10 @@ class Agent:
         return model
     
     # TODO: Generalize this function to deep_learn_batch
-    def deep_learn(self, image, correct_coords):
+    def deep_learn(self, image, correct_coords, learning_rate = 0.0001):
         input_image = image.get_image()
         input_image = input_image.reshape((1,) + input_image.shape) 
         
-        learning_rate = 0.0001
         optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
         
         self.model.compile(optimizer=optimizer, loss='mean_squared_error')

@@ -32,7 +32,7 @@ class Game:
         denormalized_lat = normalized_coords[1] * (self.extreme_points['N'] - self.extreme_points['S']) + self.extreme_points['S']
         return np.array([denormalized_long, denormalized_lat])
 
-    def get_round(self, show=True, verbose=False, learn=True, limit=100, heat=False):
+    def get_round(self, show=True, verbose=False, learn=True, limit=100, heat=False, learning_rate = 0.0001):
         image, lat, long = self.generate_image(verbose=verbose, limit=limit)
         if image is None:  # Adding a check in case the image is not successfully fetched
             return
@@ -60,16 +60,16 @@ class Game:
             print(f"Correct [Denorm]: {[long, lat]} | Agent [Denorm]: {agent_answer_denormalized}")
             self.gui.show()
         if learn:
-            self.agent.deep_learn(city_img, correct_coords_normalized)
+            self.agent.deep_learn(city_img, correct_coords_normalized, learning_rate=learning_rate)
 
         
-    def play_rounds(self, rounds, show=True, verbose=True, learn=True, limit=100, save_after=10, show_after=-1, heat=False):
+    def play_rounds(self, rounds, show=True, verbose=True, learn=True, limit=100, save_after=10, show_after=-1, heat=False, learning_rate = 0.0001):
         for i in range(rounds):
             print(f"Round {i + 1}/{rounds}")
             show_this_round = show or ((i + 1) % show_after == 0)
             if not show and show_after == -1:
                 show_this_round = False
-            self.get_round(show=show_this_round, verbose=verbose, learn=learn, limit=limit, heat=heat)
+            self.get_round(show=show_this_round, verbose=verbose, learn=learn, limit=limit, heat=heat, learning_rate=learning_rate)
             if (i + 1) % save_after == 0:
                 self.agent.save_model()
         self.agent.save_model()
